@@ -279,7 +279,15 @@ class Worker:
         # self.job_tasks holds references the actual jobs running
         self.job_tasks: Dict[str, asyncio.Task[Any]] = {}
         self.main_task: Optional[asyncio.Task[None]] = None
-        self.loop = asyncio.get_event_loop()
+        try:
+            self.loop = asyncio.get_event_loop()
+        except RuntimeError as e:
+            assert e.args[0] == "There is no current event loop in thread 'MainThread'."                                                                              
+            try:
+                self.loop = asyncio.get_running_loop()
+            except:
+                asyncio.set_event_loop(event_loop:=asyncio.new_event_loop())
+                self.loop = event_loop
         self.ctx = ctx or {}
         max_timeout = max(f.timeout_s or self.job_timeout_s for f in self.functions.values())
         self.in_progress_timeout_s = (max_timeout or 0) + 10
