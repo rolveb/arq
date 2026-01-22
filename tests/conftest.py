@@ -14,8 +14,9 @@ from arq.worker import Worker
 
 
 @pytest.fixture(name='loop')
-def _fix_loop(event_loop):
-    return event_loop
+def _fix_loop():
+    """Fixture for event loop compatibility"""
+    return asyncio.get_event_loop()
 
 
 @pytest.fixture
@@ -30,7 +31,7 @@ async def arq_redis(loop):
 
     yield redis_
 
-    await redis_.close(close_connection_pool=True)
+    await redis_.aclose()
 
 
 @pytest.fixture
@@ -44,7 +45,7 @@ async def arq_redis_msgpack(loop):
     )
     await redis_.flushall()
     yield redis_
-    await redis_.close(close_connection_pool=True)
+    await redis_.aclose()
 
 
 @pytest.fixture
@@ -59,7 +60,7 @@ async def arq_redis_retry(loop):
     )
     await redis_.flushall()
     yield redis_
-    await redis_.close(close_connection_pool=True)
+    await redis_.aclose()
 
 
 @pytest.fixture
@@ -138,7 +139,7 @@ async def fix_create_pool(loop):
 
     yield create_pool_
 
-    await asyncio.gather(*[p.close(close_connection_pool=True) for p in pools])
+    await asyncio.gather(*[p.aclose() for p in pools])
 
 
 @pytest.fixture(name='cancel_remaining_task')
