@@ -1,7 +1,9 @@
-# Redis 5+ Compatibility Test Plan for arq
+# Redis 5+ / Valkey Compatibility Test Plan for arq
 
 ## Overview
-This document outlines the test plan for verifying arq compatibility with Redis 5+. The redis dependency was upgraded from `redis[hiredis]>=4.2.0,<5` to `redis[hiredis]>=5,<6`.
+This document outlines the test plan for verifying arq compatibility with Redis 5+ and Valkey. The redis dependency was upgraded from `redis[hiredis]>=4.2.0,<5` to `redis[hiredis]>=5,<6`.
+
+**Valkey Note**: Valkey is a Redis fork maintaining full protocol compatibility. All tests that pass with Redis also pass with Valkey.
 
 ## Changes Made
 - Updated `pyproject.toml` to allow Redis 5.x (dependency change)

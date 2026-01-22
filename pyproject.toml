@@ -40,7 +40,8 @@ classifiers = [
 ]
 requires-python = '>=3.8'
 dependencies = [
-    # redis-py 5.x supports Redis server 6.2+ (GETEX, etc.)
+    # redis-py 5.x supports Redis server 6.2+ and Valkey server 7.x
+    # Valkey is a Redis fork with full protocol compatibility
     # Compatible with faststream[redis] and taskiq-redis
     'redis[hiredis]>=5,<6',
     'click>=8.0',

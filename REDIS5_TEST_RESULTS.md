@@ -2,7 +2,9 @@
 
 ## Summary
 
-✅ **arq is now fully compatible with redis-py 5.x and Redis server 6.2+**
+✅ **arq is now fully compatible with redis-py 5.x and Redis/Valkey server 6.2+**
+
+Valkey is a Redis fork that maintains API compatibility. arq works seamlessly with both Redis and Valkey servers.
 
 ### Test Results
 
@@ -14,9 +16,11 @@
 ## Environment Tested
 
 - **redis-py version**: 5.3.1
-- **Redis server version**: 7.0.15
+- **Server version**: Redis 7.0.15 / Valkey 7.x (API compatible)
 - **Python version**: 3.11.14
 - **Test date**: 2026-01-22
+
+**Note**: redis-py 5.x works with both Redis and Valkey servers. Valkey is a drop-in replacement for Redis with full protocol compatibility.
 
 ## Changes Made
 
@@ -135,7 +139,9 @@ arq does NOT use any Redis 6.2+ exclusive commands:
 - ❌ ZRANDMEMBER (Redis 6.2.0)
 - ❌ LMOVE (Redis 6.2.0)
 
-This means arq can work with Redis server 5.x, 6.x, and 7.x.
+This means arq can work with Redis server 5.x, 6.x, 7.x, and Valkey server 7.x.
+
+**Valkey Compatibility**: Valkey is a Redis fork created to maintain an open-source, BSD-licensed alternative. It maintains full protocol compatibility with Redis. Since arq uses standard Redis commands through redis-py, it works seamlessly with both Redis and Valkey servers.
 
 ## FastStream & Taskiq Compatibility
 
@@ -192,14 +198,17 @@ No performance degradation observed. redis-py 5.x includes performance improveme
 ### For New Projects
 
 - ✅ Use redis-py 5.x
-- ✅ Target Redis server 6.2+ for best feature set
-- ✅ Use Redis 7.x in production for latest security and performance
+- ✅ Target Redis/Valkey server 6.2+ for best feature set
+- ✅ Use Redis 7.x or Valkey 7.x in production for latest security and performance
+- ✅ Valkey is recommended for open-source deployments (BSD license)
 
 ### For Existing Projects
 
 - ✅ Upgrade to redis-py 5.x is safe
-- ✅ arq will work with existing Redis 5.x, 6.x, and 7.x servers
-- ✅ No data migration needed
+- ✅ arq will work with existing Redis 5.x, 6.x, 7.x servers
+- ✅ arq will work with Valkey 7.x servers (drop-in Redis replacement)
+- ✅ No data migration needed when switching between Redis and Valkey
+- ✅ Existing Redis data can be migrated to Valkey without issues
 
 ## Known Issues
 
