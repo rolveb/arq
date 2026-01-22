@@ -40,12 +40,16 @@ classifiers = [
 ]
 requires-python = '>=3.8'
 dependencies = [
-    # redis-py 5.x with hiredis for optimal performance (3-4x faster)
+    # redis-py with hiredis for optimal performance (3-4x faster parsing)
     # Supports: Redis 5.0+ / 6.x / 7.x and Valkey 7.x
     # Valkey is a Redis fork with 100% protocol compatibility (BSD licensed)
     # Compatible with faststream[redis] and taskiq-redis
     # hiredis provides native C parser for 10x faster Redis command parsing
-    'redis[hiredis]>=5,<6',
+    #
+    # Version matrix (pip auto-resolves based on Python version):
+    # - Python 3.8-3.9: redis-py 6.x (latest compatible)
+    # - Python 3.10+:   redis-py 7.x (latest: 7.1.0, Nov 2024)
+    'redis[hiredis]>=5,<8',
     'click>=8.0',
 ]
 optional-dependencies = {watch = ['watchfiles>=0.16'] }

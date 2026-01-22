@@ -3,9 +3,10 @@
 ## Executive Summary
 
 **arq now has comprehensive support for:**
-- ✅ **Redis 5.x, 6.x, 7.0, 7.2, 7.4** (all stable versions)
-- ✅ **Valkey 7.x** (Redis fork, 100% protocol compatible, BSD licensed)
-- ✅ **redis[hiredis] 5.x** (high-performance C parser, 3-4x faster)
+- ✅ **redis-py 7.1.0** (Latest - Nov 2024)
+- ✅ **Redis 5.x, 6.x, 7.x, 8.x** (all stable versions)
+- ✅ **Valkey 7.x, 8.x** (Redis fork, 100% protocol compatible, BSD licensed)
+- ✅ **redis[hiredis] 5.x-7.x** (high-performance C parser, 3-4x faster)
 - ✅ **faststream[redis]** and **taskiq-redis** compatibility
 
 ## What Was Done
